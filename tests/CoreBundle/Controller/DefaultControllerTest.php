@@ -1,6 +1,6 @@
 <?php
 
-namespace Yann\CoreBundle\Tests\Controller;
+namespace CoreBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

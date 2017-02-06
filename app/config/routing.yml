@@ -1,6 +1,7 @@
-yann_core:
-    resource: "@YannCoreBundle/Resources/config/routing.yml"
-    prefix:   /administration
+core:
+    resource: "@CoreBundle/Controller/"
+    type:     annotation
+    prefix:   /
 
 app:
     resource: "@AppBundle/Controller/"
