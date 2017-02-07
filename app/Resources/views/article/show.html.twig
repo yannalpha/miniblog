@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Article</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ article.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ article.nom }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ article.contenu }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ article.auteur }}</td>
+            </tr>
+            <tr>
+                <th>Dateparution</th>
+                <td>{% if article.dateParution %}{{ article.dateParution|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Caegorie</th>
+                <td>{{ article.caegorie }}</td>
+            </tr>
+            <tr>
+                <th>Tags</th>
+                <td>{{ article.tags }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_article_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_article_edit', { 'id': article.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
