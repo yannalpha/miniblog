@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1>Article</h1>
-
+    {{ dump(article.tags) }}
     <table>
         <tbody>
             <tr>
@@ -26,12 +26,14 @@
                 <td>{% if article.dateParution %}{{ article.dateParution|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Caegorie</th>
-                <td>{{ article.caegorie }}</td>
+                <th>Categorie</th>
+                <td>{{ article.categorie.nom }}</td>
             </tr>
             <tr>
                 <th>Tags</th>
-                <td>{{ article.tags }}</td>
+                <td>{% for tag in article.tags %}
+                    {{tag.nom}}
+                {% endfor %}</td>
             </tr>
         </tbody>
     </table>

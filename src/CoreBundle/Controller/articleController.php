@@ -2,17 +2,18 @@
 
 namespace CoreBundle\Controller;
 
-use CoreBundle\Entity\article;
+use CoreBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Article controller.
  *
  * @Route("admin/article")
  */
-class articleController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Lists all article entities.
@@ -24,7 +25,7 @@ class articleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $articles = $em->getRepository('CoreBundle:article')->findAll();
+        $articles = $em->getRepository('CoreBundle:Article')->findAll();
 
         return $this->render('article/index.html.twig', array(
             'articles' => $articles,
@@ -40,7 +41,7 @@ class articleController extends Controller
     public function newAction(Request $request)
     {
         $article = new Article();
-        $form = $this->createForm('CoreBundle\Form\articleType', $article);
+        $form = $this->createForm('CoreBundle\Form\ArticleType', $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

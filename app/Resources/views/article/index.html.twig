@@ -24,8 +24,10 @@
                 <td>{{ article.contenu }}</td>
                 <td>{{ article.auteur }}</td>
                 <td>{% if article.dateParution %}{{ article.dateParution|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ article.caegorie }}</td>
-                <td>{{ article.tags }}</td>
+                <td>{{ article.categorie.nom }}</td>
+                <td>{% for tag in article.tags %}
+                    {{tag.nom}}
+                {% endfor %}</td>
                 <td>
                     <ul>
                         <li>

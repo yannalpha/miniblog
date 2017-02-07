@@ -5,12 +5,12 @@ namespace CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * article
+ * Article
  *
  * @ORM\Table(name="article")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\articleRepository")
+ * @ORM\Entity(repositoryClass="CoreBundle\Repository\ArticleRepository")
  */
-class article
+class Article
 {
     /**
      * @var int
@@ -49,25 +49,33 @@ class article
      */
     private $dateParution;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="caegorie", type="string", length=255)
-     */
-    private $caegorie;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="tags", type="string", length=255)
+     * Many Article have One Categorie.
+     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
+     */
+    private $categorie;
+
+    /**
+     * Many Article have Many Tags.
+     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\JoinTable(name="articles_tags",
+     *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
+     *      )
      */
     private $tags;
+
+    public function __construct() {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -79,7 +87,7 @@ class article
      *
      * @param string $nom
      *
-     * @return article
+     * @return Article
      */
     public function setNom($nom)
     {
@@ -103,7 +111,7 @@ class article
      *
      * @param string $contenu
      *
-     * @return article
+     * @return Article
      */
     public function setContenu($contenu)
     {
@@ -127,7 +135,7 @@ class article
      *
      * @param string $auteur
      *
-     * @return article
+     * @return Article
      */
     public function setAuteur($auteur)
     {
@@ -151,7 +159,7 @@ class article
      *
      * @param \DateTime $dateParution
      *
-     * @return article
+     * @return Article
      */
     public function setDateParution($dateParution)
     {
@@ -171,51 +179,60 @@ class article
     }
 
     /**
-     * Set caegorie
+     * Set categorie
      *
-     * @param string $caegorie
+     * @param \CoreBundle\Entity\Categorie $categorie
      *
-     * @return article
+     * @return Article
      */
-    public function setCaegorie($caegorie)
+    public function setCategorie(\CoreBundle\Entity\Categorie $categorie = null)
     {
-        $this->caegorie = $caegorie;
+        $this->categorie = $categorie;
 
         return $this;
     }
 
     /**
-     * Get caegorie
+     * Get categorie
      *
-     * @return string
+     * @return \CoreBundle\Entity\Categorie
      */
-    public function getCaegorie()
+    public function getCategorie()
     {
-        return $this->caegorie;
+        return $this->categorie;
     }
 
     /**
-     * Set tags
+     * Add tag
      *
-     * @param string $tags
+     * @param \CoreBundle\Entity\Tag $tag
      *
-     * @return article
+     * @return Article
      */
-    public function setTags($tags)
+    public function addTag(\CoreBundle\Entity\Tag $tag)
     {
-        $this->tags = $tags;
+        $this->tags[] = $tag;
 
         return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param \CoreBundle\Entity\Tag $tag
+     */
+    public function removeTag(\CoreBundle\Entity\Tag $tag)
+    {
+        $this->tags->removeElement($tag);
     }
 
     /**
      * Get tags
      *
-     * @return string
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTags()
     {
         return $this->tags;
     }
 }
-
