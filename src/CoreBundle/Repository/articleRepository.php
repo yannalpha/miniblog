@@ -10,4 +10,13 @@ namespace CoreBundle\Repository;
  */
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findLastFiveElements()
+    {
+        return $this->createQueryBuilder('a')   // alias
+                    ->setMaxResults(5)          // 5 articles
+                    ->addOrderBy('a.dateParution', 'DESC')  // tri par date parution dernier créé avant
+                    ->getQuery()
+                    ->getResult();
+
+    }
 }

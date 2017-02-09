@@ -1,0 +1,35 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}CoreBundle:Accueil:accueil{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Accueil:accueil page</h1>
+<h2>Articles list</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Contenu</th>
+                <th>Auteur</th>
+                <th>Date de parution</th>
+                <th>Categorie</th>
+                <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.nom }}</td>
+                <td>{{ article.contenu }}</td>
+                <td>{{ article.auteur }}</td>
+                <td>{% if article.dateParution %}{{ article.dateParution|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ article.categorie.nom }}</td>
+                <td>{% for tag in article.tags %}
+                    {{tag.nom}}
+                {% endfor %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
