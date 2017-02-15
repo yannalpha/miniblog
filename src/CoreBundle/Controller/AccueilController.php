@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class AccueilController extends Controller
 {
     /**
-     * @Route("/accueil")
+     * @Route("/accueil", name="accueil")
      */
     public function accueilAction()
     {
@@ -25,7 +25,7 @@ class AccueilController extends Controller
     }
 
     /**
-     * @Route("/articles")
+     * @Route("/articles", name="articles")
      */
     public function articlesAction()
     {
@@ -35,7 +35,7 @@ class AccueilController extends Controller
     }
 
     /**
-     * @Route("/article")
+     * @Route("/article", name="article")
      */
     public function articleAction()
     {
@@ -46,7 +46,7 @@ class AccueilController extends Controller
     }
 
     /**
-     * @Route("/categorie")
+     * @Route("/categorie", name="categorie")
      */
     public function categorieAction()
     {

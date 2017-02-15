@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+        {% block adminNav %}
+       
+                        <ul>
+                            <li><a href="{{ path('admin_article_index') }}">Ajout Article</a></li> 
+                            <li><a href="{{ path('admin_categorie_index') }}">Page Catégorie</a></li>
+                            <li><a href="{{ path('admin_tag_index') }}">Page tags</a></li>
+                        </ul>
+         {% endblock %}
+                     
